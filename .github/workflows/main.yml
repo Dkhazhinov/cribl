@@ -38,7 +38,7 @@ jobs:
       - name: Save log files from target 1 and target 2
         run: |
           docker ps
-          docker cp cribl_target_1_1:/usr/src/ /home/runner/work/cribl/cribl/output
+          docker cp cribl_target_1_1:/usr/src/qwsqwds /home/runner/work/cribl/cribl/output
         
       - name: List of docker comtainers
         run: |

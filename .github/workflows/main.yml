@@ -45,8 +45,7 @@ jobs:
         run: |
           cd output
           ls
-          cd src
-          ls
+          cat events_target_1.log
       
       - name: Remove containers after the run
         if: always()

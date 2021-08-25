@@ -60,7 +60,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - run: mkdir outputs
-      - uses: ctions/download-artifact@v2
+      - uses: actions/download-artifact@v2
         with:
           name: my-artifact
           path: /home/runner/work/cribl/cribl/outputs

@@ -9,11 +9,17 @@ services:
     build:
       context: .
       dockerfile: target.Dockerfile
+    depends_on:
+      - "target_1"
   splitter:
     build:
       context: .
       dockerfile: splitter.Dockerfile
+    depends_on:
+      - "target_2"
   agent:
     build:
       context: .
       dockerfile: agent.Dockerfile
+    depends_on:
+      - "splitter"

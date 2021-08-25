@@ -40,8 +40,8 @@ jobs:
       - name: Save log files from target 1 and target 2
         run: |
           docker ps
-          docker cp cribl_target_1_1:/usr/src/events.log /home/runner/work/cribl/cribl/output/events_target_1.log
-          docker cp cribl_target_2_1:/usr/src/events.log /home/runner/work/cribl/cribl/output/events_target_2.log
+          docker cp cribl_target_1_1:/usr/src/events.log /home/runner/work/cribl/cribl/outputs/events_target_1.log
+          docker cp cribl_target_2_1:/usr/src/events.log /home/runner/work/cribl/cribl/outputs/events_target_2.log
         
       - name: List of docker comtainers
         run: |
@@ -51,7 +51,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: my-artifact
-          path: /home/runner/work/cribl/cribl/output/*
+          path: /home/runner/work/cribl/cribl/outputs/*
       
       - name: Remove containers after the run
         if: always()

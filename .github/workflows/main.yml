@@ -31,4 +31,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-        run: docker-compose up
+        run: docker-compose -f "cribl/assignment/docker-compose.yml" up -d

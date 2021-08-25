@@ -34,6 +34,10 @@ jobs:
         run: |
           docker-compose -f "docker-compose.yml" up -d
           docker ps
+      - name: Save log files from target 1 and target 2
+        run: |
+          docker cp cribl_target_1_1:/usr/src/events.log output/events_1.log
+          docker cp cribl_target_2_1:/usr/src/events.log output/events_2.log
         
       - name: List of docker comtainers
         run: docker ps

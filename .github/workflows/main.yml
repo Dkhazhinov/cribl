@@ -27,8 +27,24 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: ls
+        run: |
+          echo $PWD
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-        run: docker-compose -f "docker-compose.yml" up -d
+        run: |
+          docker-compose -f "docker-compose.yml" up
+          docker ps
+      - name: Save log files from target 1 and target 2
+        run: |
+          docker ps
+          docker cp cribl_target_1_1:/usr/src/ /home/runner/work/cribl/cribl/output
+        
+      - name: List of docker comtainers
+        run: |
+          cd output
+          cd src
+          ls
+      
+      - name: Remove containers after the run
+        run: docker-compose -f "docker-compose.yml" down

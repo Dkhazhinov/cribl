@@ -1,0 +1,19 @@
+version: '3'
+
+services: 
+  target_1:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+  target_2:
+    build:
+      context: .
+      dockerfile: target.Dockerfile
+  splitter:
+    build:
+      context: .
+      dockerfile: splitter.Dockerfile
+  agent:
+    build:
+      context: .
+      dockerfile: agent.Dockerfile

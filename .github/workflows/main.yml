@@ -47,4 +47,5 @@ jobs:
           ls
       
       - name: Remove containers after the run
+        if: always()
         run: docker-compose -f "docker-compose.yml" down

@@ -48,7 +48,7 @@ jobs:
           cd output
           ls
       
-      - uses: actions/upload-artifacts@v2
+      - uses: actions/upload-artifact@v2
         with:
           name: my-artifact
           path: /home/runner/work/cribl/cribl/output/events_target_1.log

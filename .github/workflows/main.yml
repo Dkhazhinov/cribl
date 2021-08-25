@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  deployment:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -42,11 +42,6 @@ jobs:
           docker ps
           docker cp cribl_target_1_1:/usr/src/events.log /home/runner/work/cribl/cribl/outputs/events_target_1.log
           docker cp cribl_target_2_1:/usr/src/events.log /home/runner/work/cribl/cribl/outputs/events_target_2.log
-        
-      - name: List of docker comtainers
-        run: |
-          cd output
-          ls
       
       - uses: actions/upload-artifact@v2
         with:

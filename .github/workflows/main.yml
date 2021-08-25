@@ -43,6 +43,7 @@ jobs:
       - name: List of docker comtainers
         run: |
           cd output
+          cd src
           ls
       
       - name: Remove containers after the run

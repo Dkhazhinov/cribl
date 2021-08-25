@@ -28,6 +28,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
+          run mkdir outputs
+          ls
           echo $PWD
 
       # Runs a set of commands using the runners shell
@@ -45,7 +47,11 @@ jobs:
         run: |
           cd output
           ls
-          cat events_target_1.log
+      
+      - uses: actions/upload-artifacts@v2
+        with:
+          name: my-artifact
+          path: /home/runner/work/cribl/cribl/output/events_target_1.log
       
       - name: Remove containers after the run
         if: always()

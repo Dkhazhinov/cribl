@@ -51,7 +51,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: my-artifact
-          path: /home/runner/work/cribl/cribl/output/events_target_1.log
+          path: /home/runner/work/cribl/cribl/output/*
       
       - name: Remove containers after the run
         if: always()

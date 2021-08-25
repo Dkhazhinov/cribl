@@ -1,3 +1,0 @@
-# packages
-pytest
-Docker-py

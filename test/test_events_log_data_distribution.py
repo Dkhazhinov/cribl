@@ -16,6 +16,7 @@ class TestLogDistribution:
         """
         file_path = f"{os.getcwd()}/outputs"
 
+        # verify that file exists
         assert os.path.isfile(f"{file_path}/{file_name}"), (
             f"File {file_name} is not found"
         )

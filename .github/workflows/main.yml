@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Docker
+name: Data Distribution
 
 # Controls when the workflow will run
 on:
@@ -75,6 +75,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
-      - name: Test with Pytes
+      - name: Test with Pytest
         run: |
-          pytest -v
+          pytest -v --html=test_report.html
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: /home/runner/work/cribl/cribl/test_report.html

@@ -77,7 +77,7 @@ jobs:
       
       - name: Test with Pytest
         run: |
-          pytest -v --html=test_report.html --self-contained-html
+          pytest -v --html=test_report.html
           
       - uses: actions/upload-artifact@v2
         with:

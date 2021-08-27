@@ -22,14 +22,14 @@ jobs:
   
       - uses: actions/checkout@v2
 
+      # Create temporary directory where we can collect log outputs
+      - run: mkdir outputs
+
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Start up docker containers
         run: |
           docker-compose -f "docker-compose.yml" up -d --build
           docker ps
-      
-      # Create temporary directory where we can collect log outputs
-      - run: mkdir outputs
       
       # Copy event logs from running container to temp directory
       - name: Save log files from target 1 and target 2

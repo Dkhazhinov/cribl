@@ -35,15 +35,15 @@ jobs:
       - name: Save log files from target 1 and target 2
         run: |
           docker ps
-          docker cp cribl_target_1_1:/usr/src/events.log /outputs/events_target_1.log
-          docker cp cribl_target_2_1:/usr/src/events.log /outputs/events_target_2.log
+          docker cp cribl_target_1_1:/usr/src/events.log ./outputs/events_target_1.log
+          docker cp cribl_target_2_1:/usr/src/events.log ./outputs/events_target_2.log
       
       # Upload artifacts from temp directory
       - uses: actions/upload-artifact@v2
         if: always()
         with:
           name: my-artifact
-          path: /outputs/*
+          path: ./outputs/*
       
       # This step will remove containers after each run even on failed deployment
       - name: Remove containers after the run
@@ -65,7 +65,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: my-artifact
-          path: /outputs
+          path: ./outputs
       
       # Set up Python for test framework
       - name: Set up Python
@@ -89,4 +89,4 @@ jobs:
         if: always()
         with:
           name: my-artifact
-          path: /test_report.html
+          path: ./test_report.html

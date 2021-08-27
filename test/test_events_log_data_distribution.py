@@ -1,5 +1,5 @@
-import os
 import pytest
+from helpers import *
 from itertools import zip_longest
 
 
@@ -88,4 +88,56 @@ class TestLogDistribution:
             f"\nWhere number of lines for target_1 file: {events_one_count} and target_2 file: {events_two_count}"
             f"\nTest input data: {file_names}"
         )
+
+    @pytest.mark.ddev
+    @pytest.mark.parametrize("file_names", [
+        {
+            "input": "large_1M_events.log",
+            "target_1": "events_target_1.log",
+            "target_2": "events_target_2.log"
+        }
+    ])
+    def test_verify_file_content_matches(self, file_names: dict):
+        # Path to input log file and output events log files
+        input_path = f"{os.getcwd()}/agent/inputs/{file_names.get('input')}"
+        events_one_path = f"{os.getcwd()}/outputs/{file_names.get('target_1')}"
+        events_two_path = f"{os.getcwd()}/outputs/{file_names.get('target_2')}"
+
+        # combine two output log filed into one sorted file
+        combined_file_path = combine_files(events_one_path, events_two_path)
+        sort_file(combined_file_path)
+
+        with open(input_path, 'r') as input_file, open(combined_file_path, 'r') as sorted_results:
+            # read data from files
+            input_list = input_file.readlines()
+            out_list = sorted_results.readlines()
+
+            # compare two sets with data from files
+            set_difference = set(out_list) - set(input_list)
+            corrupted_data = list(set_difference)
+
+            # map line of data to a host
+            # in case of any data was corrupted after splitter process
+            if len(corrupted_data) != 0:
+                mapped_to_file = []
+                for element in corrupted_data:
+                    # we need to match line of data with file that it came from
+                    for file in [events_one_path, events_two_path]:
+                        # call method that will return True if line matched the file
+                        file_found = get_file_name_from_string(element, file)
+                        if file_found:
+                            # translate file name to host name
+                            for file_name in file_names.keys():
+                                if file_name in file:
+                                    host_name = file_name
+                            mapped_to_file.append((host_name, element))
+                            # exit loop if file was identified
+                            break
+
+            # verify that data was split without loss
+            assert len(corrupted_data) == 0, (
+                f"Total of {len(corrupted_data)} event(s) were corrupter after data went through Splitter\n"
+                f"\nFollowing list of pairs (receiving_host_name, log_line) were corrupted:\n"
+                f"{mapped_to_file}\n"
+            )
 

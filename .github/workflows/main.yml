@@ -40,6 +40,7 @@ jobs:
       
       # Upload artifacts from temp directory
       - uses: actions/upload-artifact@v2
+        if: always()
         with:
           name: my-artifact
           path: /home/runner/work/cribl/cribl/outputs/*
@@ -85,6 +86,7 @@ jobs:
         
       # Upload test results report html file to pipeline artifacts
       - uses: actions/upload-artifact@v2
+        if: always()
         with:
           name: my-artifact
           path: /home/runner/work/cribl/cribl/test_report.html

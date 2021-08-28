@@ -2,6 +2,10 @@
 
 author: Dmitry Khazhinov
 
+Known Issues:
+---
+https://github.com/Dkhazhinov/cribl/issues
+
 CI - GitHub workflow
 ---
 The pipeline (workflow) contains two jobs: `deployment` and `testing`. CI workflow triggered on every **push** 

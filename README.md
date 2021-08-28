@@ -91,8 +91,9 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-###There are two ways of running tests locally:
-- Running python script `deployment.py` that will perform automated deployment and tear down
+Deployment and Run Tests:
+
+Run python script `deployment.py` that will perform automated deployment and tear down
 
 `deployment.py` script supports `test` arguments that will run all tests automatically:
 ```commandline

@@ -105,7 +105,7 @@ class TestLogDistribution:
 
         # combine two output log filed into one sorted file
         combined_file_path = combine_files(events_one_path, events_two_path)
-        sort_file(combined_file_path)
+        # sort_file(combined_file_path)
 
         with open(input_path, 'r') as input_file, open(combined_file_path, 'r') as sorted_results:
             # read data from files

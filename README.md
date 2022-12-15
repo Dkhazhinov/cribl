@@ -1,4 +1,4 @@
-# Cribl Take home project
+# Cribl
 
 author: Dmitry Khazhinov
 
